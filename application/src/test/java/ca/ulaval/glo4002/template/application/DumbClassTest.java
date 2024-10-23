@@ -1,9 +1,9 @@
 package ca.ulaval.glo4002.template.application;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DumbClassTest {
 
