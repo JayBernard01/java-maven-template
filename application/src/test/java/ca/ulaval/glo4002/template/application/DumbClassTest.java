@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class DumbClassTest {
-
     private DumbClass dumbClass;
 
     @BeforeEach

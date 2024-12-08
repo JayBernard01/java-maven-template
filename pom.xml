@@ -68,6 +68,12 @@
                 <artifactId>spotless-maven-plugin</artifactId>
                 <version>${spotless.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.24.2</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -79,11 +85,101 @@
                     <artifactId>spotless-maven-plugin</artifactId>
                     <version>2.43.0</version>
                     <configuration>
+                        <!-- https://github.com/diffplug/spotless/tree/main/plugin-maven -->
+
+                        <!-- language-specific format -->
                         <java>
+                            <!-- files included in analysis -->
                             <includes>
                                 <include>src/main/java/**/*.java</include>
                                 <include>src/test/java/**/*.java</include>
                             </includes>
+
+                            <replaceRegex>
+                                <name>Ensure blank line before for</name>
+                                <searchRegex>(?&lt;=;)\n*\s*(?=for)</searchRegex>
+                                <replacement>${line.separator}${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure no blank line before for with no code before</name>
+                                <searchRegex>(?&lt;=\{)\n*\s*(?=for)</searchRegex>
+                                <replacement>${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure blank line before if</name>
+                                <searchRegex>(?&lt;=;)\n*\s*(?=if)</searchRegex>
+                                <replacement>${line.separator}${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure no blank line before if with no code before</name>
+                                <searchRegex>(?&lt;=\{)\n*\s*(?=if)</searchRegex>
+                                <replacement>${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure blank line before return</name>
+                                <searchRegex>(?&lt;=;)\n*\s*(?=return)</searchRegex>
+                                <replacement>${line.separator}${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure no blank line before returns with no code before</name>
+                                <searchRegex>(?&lt;=\{)\n*\s*(?=return)</searchRegex>
+                                <replacement>${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure blank line before try</name>
+                                <searchRegex>(?&lt;=;)\n*\s*(?=try)</searchRegex>
+                                <replacement>${line.separator}${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure no blank line before try with no code before</name>
+                                <searchRegex>(?&lt;=\{)\n*\s*(?=try)</searchRegex>
+                                <replacement>${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure blank line before catch</name>
+                                <searchRegex>(?&lt;=;)\n*\s*(?=catch)</searchRegex>
+                                <replacement>${line.separator}${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure no blank line before catch with no code before</name>
+                                <searchRegex>(?&lt;=\{)\n*\s*(?=catch)</searchRegex>
+                                <replacement>${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure blank line before while</name>
+                                <searchRegex>(?&lt;=;)\n*\s*(?=while)</searchRegex>
+                                <replacement>${line.separator}${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure no blank line before while with no code before</name>
+                                <searchRegex>(?&lt;=\{)\n*\s*(?=while)</searchRegex>
+                                <replacement>${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure blank line before attribute</name>
+                                <searchRegex>(?&lt;=;)\n*\s*(?=private|public|protected)</searchRegex>
+                                <replacement>${line.separator}${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <replaceRegex>
+                                <name>Ensure blank line before first attribute</name>
+                                <searchRegex>(?&lt;=\{)\n*\s*(?=private|public|protected)</searchRegex>
+                                <replacement>${line.separator}</replacement>
+                            </replaceRegex>
+
+                            <!-- https://github.com/palantir/palantir-java-format -->
                             <palantirJavaFormat/>
                         </java>
                     </configuration>
